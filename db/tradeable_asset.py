@@ -2,4 +2,5 @@
 
 from .client import supabase
 
-def create()
+def create():
+    pass
