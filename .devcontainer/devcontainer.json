@@ -7,7 +7,7 @@
   "updateContentCommand": "pip install -r requirements.txt",
   "postCreateCommand": "",
   "postAttachCommand": {
-    "server": "sanic server.app --dev"
+    "server": "python server.py"
   },
   "portsAttributes": {
     "5000": {
