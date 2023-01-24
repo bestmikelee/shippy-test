@@ -7,7 +7,7 @@
   "updateContentCommand": "pip install -r requirements.txt",
   "postCreateCommand": "",
   "postAttachCommand": {
-    "server": "flask --debug run"
+    "server": "sanic server.app --dev"
   },
   "portsAttributes": {
     "5000": {
