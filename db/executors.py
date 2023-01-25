@@ -2,7 +2,7 @@
 import datetime
 from mayim import PostgresExecutor, query
 
-from db.models import Asset, Daily
+from db.models import Asset, Daily, Report, ShortReport
 
 
 class DailyExecutor(PostgresExecutor):
@@ -46,4 +46,35 @@ class DailyExecutor(PostgresExecutor):
         """
     )
     async def select_asset(self, ticker: str) -> Asset:
+        pass
+
+    
+
+class ReportExecutor(PostgresExecutor):
+    async def select_report(
+        self,
+        analyst: str,
+        ticker: str
+    ) -> Report:
+        pass
+
+    async def insert_report(
+        self,
+        ticker_id: int,
+        analyst: str,
+        report_year: int,
+        report_path: str,
+        measured_year: int,
+        revenue: int,
+        gross_income: int,
+        ebitda: int,
+        income_tax: int
+    ):
+        pass
+
+    async def select_all_for_market_analysis(
+        self,
+        begin_timestamp: datetime.date,
+        end_timestamp: datetime.date
+    ) -> list[ShortReport]:
         pass

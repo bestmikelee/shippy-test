@@ -1,13 +1,17 @@
-# GitHub Codespaces ♥️ Flask
 
-Welcome to your shiny new Codespace running Flask! We've got everything fired up and running for you to explore Flask.
+# getting started
 
-You've got a blank canvas to work on from a git perspective as well. There's a single initial commit with the what you're seeing right now - where you go from here is up to you!
+add env variables:
+`export POLYGON_API_KEY=[YOUR-API-KEY]`
+`export POSTGRES_URL=postgres://postgres:[YOUR-PASSWORD]@db.gwtmyrphmvdswrbssowi.supabase.co:5432/postgres`
 
-Everything you do here is contained within this one codespace. There is no repository on GitHub yet. If and when you’re ready you can click "Publish Branch" and we’ll create your repository and push up your project. If you were just exploring then and have no further need for this code then you can simply delete your codespace and it's gone forever.
+install dependencies for camelot
+https://camelot-py.readthedocs.io/en/master/user/install-deps.html
 
-To run this application:
+`pip install -r requirements.txt`
 
-```
-flask --debug run
-```
+to start server and trigger fetch market data task
+`python server.py`
+
+logic to report parser
+`./report_parser.py` 

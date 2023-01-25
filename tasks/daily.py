@@ -76,6 +76,8 @@ async def handle_ohlc(ticker: str, count: int):
     return count
 
 def get_days_of_interest(num: int = 7):
+    """ ordered from today -> number of days back
+    """
     today = date.today()
     day = today
     days_back = 0
