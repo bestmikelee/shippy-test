@@ -1,25 +1,53 @@
 """app start"""
-from sanic import Sanic
-from sanic.response import text
-from external.polygon import get_ticker
-from db.client import db
-from tasks.daily import daily_close
+import pandas as pd
+from sanic import Sanic, Request
+from sanic.response import json as json_sanic
+from sanic_ext import Extend
+from mayim.extension import SanicMayimExtension
+from db.executors import DailyExecutor
+from tasks.daily import daily_close, get_days_of_interest
 
 app = Sanic("Shippy")
-app.config.DB_HOST = 'db.gwtmyrphmvdswrbssowi.supabase.co'
-app.config.DB_DATABASE = 'postgres'
-app.config.DB_PORT = 5432
-app.config.DB_USER = 'postgres'
-app.config.DB_PASSWORD = 'ko%Mz&P7QCgf'
-app.add_task(daily_close())
-db.init_app(app)
+app.add_task(daily_close)
+
+
+Extend.register(
+    SanicMayimExtension(
+        executors=[DailyExecutor],
+        dsn="postgres://postgres:3kevNFKiFNAZ@db.gwtmyrphmvdswrbssowi.supabase.co:5432/postgres",
+    )
+)
 
 @app.get("/average_ohlc")
-async def average_ohlc(request):
-    # get ticker as query params
-    # execute query in service
-    return text(await get_ticker(request.args.get('ticker')))
+async def average_ohlc(request: Request):
+    """average weekly open, close, high, low, volume for each ticker in input
+
+    Args:
+        request (Request): sanic request
+
+    Returns:
+        JSONResponse: json response of average weekly
+    """
+    daily_executor = DailyExecutor()
+    days_of_interest = get_days_of_interest()
+    tickers = request.args.get('ticker').split(',')
+    results = []
+    for t in tickers:
+        asset = await daily_executor.select_asset(t)
+        res = await daily_executor.select_ticker_closes(asset.ticker, days_of_interest[len(days_of_interest) - 1], days_of_interest[0])
+        df = pd.DataFrame(res).mean()
+        results.append({
+            "ticker": t,
+            "prices": {
+                "open": round(df["open"], 1),
+                "high": round(df["high"], 1),
+                "low": round(df["low"], 1),
+                "close": round(df["close"], 1)
+            },
+            "volume": int(df["volume"])
+        })
+    return json_sanic(results)
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True, auto_reload=False, workers=1)
+    app.run(host="0.0.0.0", port=5000, debug=True, auto_reload=True, workers=1)

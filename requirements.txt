@@ -79,6 +79,7 @@ Mako==1.2.4
 MarkupSafe==2.1.1
 matplotlib==3.6.2
 matplotlib-inline==0.1.6
+mayim==1.0.1
 mistune==2.0.4
 more-itertools==9.0.0
 multidict==6.0.4
@@ -109,12 +110,15 @@ postgrest-py==0.10.3
 prometheus-client==0.15.0
 prompt-toolkit==3.0.36
 psutil==5.9.4
+psycopg==3.1.8
+psycopg-pool==3.1.5
 ptyprocess==0.7.0
 pure-eval==0.2.2
 pycparser==2.21
 pydantic==1.10.4
 Pygments==2.13.0
 pyparsing==3.0.9
+PyPDF2==3.0.1
 pyrsistent==0.19.2
 python-dateutil==2.8.2
 python-dotenv==0.21.1
@@ -133,6 +137,7 @@ rfc3339-validator==0.1.4
 rfc3986==1.5.0
 rfc3986-validator==0.1.1
 sanic==22.12.0
+sanic-ext==22.12.0
 sanic-routing==22.8.0
 scikit-learn==1.2.0
 scipy==1.9.3

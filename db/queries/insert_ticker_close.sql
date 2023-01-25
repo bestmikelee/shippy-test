@@ -1,0 +1,20 @@
+insert into daily_summary
+    (
+        ticker_id,
+        close, 
+        high, 
+        low, 
+        open, 
+        volume, 
+        timestamp
+    )
+values
+    (
+        $ticker_id,
+        $close,
+        $high,
+        $low,
+        $open_p,
+        $volume,
+        $timestamp
+    )
