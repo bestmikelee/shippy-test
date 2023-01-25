@@ -22,18 +22,19 @@ pdfs should be organized under `./external/reports/[ticker]/*.pdf` ticker needs 
 
 ## routes:
 
-GET `/average_ohlc` 
-params: ticker - tickers separated by commas
-example `/average_ohlc?ticker=AAPL,F`
+GET `/average_ohlc`  
+- params: ticker - tickers separated by commas  
+- example `/average_ohlc?ticker=AAPL,F`
     weekends accounted for, holidays not
 
-GET `/get_company_financials`
-params: ticker - ticker name
-        analyst - JPM | Morning
-    requires pdfs if table is not filled already
+GET `/get_company_financials`. 
+- params: ticker - ticker name
+- params: analyst - JPM | Morning
+- requires pdfs if table is not filled already
 
-GET `/market_cap_rank_analytics` 
-    will automatically load data into db if not found and pdf is found
+GET `/market_cap_rank_analytics`   
+    
+will automatically load data into db if not found and pdf is found
 
 daily close data will be loaded on server startup.  
 rate limiting is considered and currently hardcoded into the system to 5/min
