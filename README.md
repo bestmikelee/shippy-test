@@ -2,8 +2,8 @@
 # getting started
 
 add env variables:
-`export POLYGON_API_KEY=[YOUR-API-KEY]`
-`export POSTGRES_URL=postgres://postgres:[YOUR-PASSWORD]@db.gwtmyrphmvdswrbssowi.supabase.co:5432/postgres`
+- `export POLYGON_API_KEY=[YOUR-API-KEY]`
+- `export POSTGRES_URL=postgres://postgres:[YOUR-PASSWORD]@db.gwtmyrphmvdswrbssowi.supabase.co:5432/postgres`
 
 install dependencies for camelot
 https://camelot-py.readthedocs.io/en/master/user/install-deps.html
@@ -13,7 +13,7 @@ https://camelot-py.readthedocs.io/en/master/user/install-deps.html
 to start server and trigger fetch market data task
 `python server.py`
 
-server is listening on port 5000
+server is listening on port `5000`
 
 ## backfilling data:
 supabase tables can be created by the sql queries in `./db/queries/create_*.sql`
@@ -23,13 +23,14 @@ pdfs should be organized under `./external/reports/[ticker]/*.pdf` ticker needs 
 ## routes:
 
 GET `/average_ohlc`  
-- params: ticker - tickers separated by commas  
+- params: `ticker` - tickers separated by commas  
 - example `/average_ohlc?ticker=AAPL,F`
     weekends accounted for, holidays not
 
 GET `/get_company_financials`. 
-- params: ticker - ticker name
-- params: analyst - JPM | Morning
+- params: `ticker` - ticker name
+- params: `analyst` - `JPM | Morning`
+- example `/get_company_financials?ticker=AAPL&analyst=Morning`
 - requires pdfs if table is not filled already
 
 GET `/market_cap_rank_analytics`   
