@@ -27,5 +27,12 @@
       ]
     }
   },
-  "forwardPorts": [5000]
+"forwardPorts": [
+	5000
+],
+"features": {
+	"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+    "packages": ["ghostscript", "python3-tk", "python3-opencv"]
+  }
+}
 }
